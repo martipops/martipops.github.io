@@ -72,8 +72,10 @@ var games = {
     "mysteryred":"Pokemon Mystery Dungeon Red",
     "pokemonruby":"Pokemon Ruby",
     "pokemonsapphire":"Pokemon Sapphire",
-	"pokemonlightplat":"Pokemon Sapphire",
+	"pokemonlightplat":"Pokemon Light Platinum",
     "pokemonred":"Pokemon Fire Red",
+	"pokemonflorasky":"Pokemon Flora Sky",
+	"pokemonglaze":"Pokemon Glaze",
     "gba_video_pokemon_1":"Pokemon Video Pak 1",
     "gba_video_pokemon_2":"Pokemon Video Pak 2",
     "gba_video_pokemon_3":"Pokemon Video Pak 3",
@@ -134,25 +136,25 @@ var IodineGUI = {
         keyZonesGBA:[
             //Use this to control the GBA key mapping:
             //A:
-            88,
+            188,
             //B:
-            90,
+            190,
             //Select:
-            16,
+            222,
             //Start:
             13,
             //Right:
-            39,
+            68,
             //Left:
-            37,
+            65,
             //Up:
-            38,
+            87,
             //Down:
-            40,
-            //R:
             83,
+            //R:
+            186,
             //L:
-            65
+            76
         ],
         keyZonesControl:[
             //Use this to control the emulator function key mapping:
@@ -161,17 +163,17 @@ var IodineGUI = {
             //Volume Up:
             56,
             //Speed Up:
-            52,
+            187,
             //Slow Down:
-            51,
+            189,
             //Reset Speed:
-            53,
+            8,
             //Toggle Fullscreen:
-            54,
+            70,
             //Play/Pause:
             80,
             //Restart:
-            82
+            48
         ]
     }
 };
