@@ -42,8 +42,6 @@ var games = {
     "gamewatch4":"Game & Watch Gallery 4",
     "goldensun":"Golden Sun",
     "gta":"Grand Theft Auto",
-    "gta":"Grand Theft Auto",
-    "gta":"Grand Theft Auto",
     "gunstar_super_heroes":"Gunstar Super Heroes",
     "hamtaro_heartbreak":"Hamtaro - Ham-Ham Heartbreak",
     "hmfomt":"Harvest Moon: Friends of Mineral Town",
