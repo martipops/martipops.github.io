@@ -138,7 +138,7 @@ var IodineGUI = {
         sound:true,
         volume:1,
         skipBoot:false,
-        toggleSmoothScaling:true,
+        toggleSmoothScaling:false,
         toggleDynamicSpeed:false,
         toggleOffthreadGraphics:true,
         toggleOffthreadCPU:(navigator.userAgent.indexOf('AppleWebKit') == -1 || (navigator.userAgent.indexOf('Windows NT 10.0') != -1 && navigator.userAgent.indexOf('Trident') == -1)),
