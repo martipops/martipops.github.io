@@ -1,6 +1,5 @@
 <template>
-  <div class="">
-    <h2 class="mb-2">Drag & Sort List</h2>
+  <div class="flex flex-col gap-2">
     <draggable
       v-model="localItems"
       item-key="id"
@@ -21,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent} from 'vue'
 import draggable from 'vuedraggable'
 import ThumbnailItem from './ThumbnailItem.vue'
 
@@ -38,21 +37,23 @@ export default defineComponent({
       default: false
     }
   },
-  setup(props, { emit }) {
-    const localItems = ref([...props.items])
-
-    watch(
-      () => props.items,
-      (newItems) => {
-        localItems.value = [...newItems]
-      }
-    )
-
-    const emitUpdate = (newItems: any[]) => {
-      emit('update:items', newItems)
+  data() {
+    return {
+      localItems: [...this.items]
     }
-
-    return { localItems, emitUpdate }
+  },
+  watch: {
+    items: {
+      handler(newItems) {
+        this.localItems = [...newItems]
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    emitUpdate() {
+      this.$emit('update:items', this.localItems)
+    }
   }
 })
 </script>
