@@ -4,8 +4,8 @@ import Home from './Home.vue'
 import ImgToPDF from './projects/img-to-pdf/ImgToPDF.vue'
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/projects/img-to-pdf', component: ImgToPDF }
+  { path: '/', component: Home, meta: { title: 'Martipops Projects' } },
+  { path: '/projects/img-to-pdf', component: ImgToPDF, meta: { title: 'Images to PDF' } }
 ]
 
 const router = createRouter({
