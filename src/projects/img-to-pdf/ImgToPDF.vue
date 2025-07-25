@@ -120,30 +120,57 @@ export default defineComponent({
     updateDraggableItems(newItems: any[]) {
       this.draggableItems = newItems
     },
-    async generatePdf() {
+    async generatePdf(): Promise<void> {
       const pdf = new jsPDF()
-      const pageWidth = pdf.internal.pageSize.getWidth()
-      const pageHeight = pdf.internal.pageSize.getHeight()
+      const pageWidth: number = pdf.internal.pageSize.getWidth()
+      const pageHeight: number = pdf.internal.pageSize.getHeight()
 
-      const loadImage = (src: string) =>
-        new Promise<HTMLImageElement>((resolve) => {
+      const processImage = (src: string): Promise<{ dataUrl: string; width: number; height: number }> =>
+        new Promise((resolve) => {
           const img = new Image()
           img.src = src
-          img.onload = () => resolve(img)
+          img.onload = (): void => {
+            const canvas: HTMLCanvasElement = document.createElement('canvas')
+            const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!
+            
+            canvas.width = img.naturalWidth || img.width
+            canvas.height = img.naturalHeight || img.height
+            
+            ctx.drawImage(img, 0, 0)
+            
+            resolve({
+              dataUrl: canvas.toDataURL('image/jpeg', 0.9),
+              width: canvas.width,
+              height: canvas.height
+            })
+          }
         })
 
       for (let i = 0; i < this.draggableItems.length; i++) {
         if (i > 0) pdf.addPage()
-        const img = await loadImage(this.draggableItems[i].image)
-        const imgWidth = img.width
-        const imgHeight = img.height
-        const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight)
-        const displayWidth = imgWidth * ratio
-        const displayHeight = imgHeight * ratio
-        const x = (pageWidth - displayWidth) / 2
-        const y = (pageHeight - displayHeight) / 2
-        pdf.addImage(this.draggableItems[i].image, 'JPEG', x, y, displayWidth, displayHeight)
+        
+        const processedImg = await processImage(this.draggableItems[i].image)
+        
+        const scaleX: number = pageWidth / processedImg.width
+        const scaleY: number = pageHeight / processedImg.height
+        const scale: number = Math.min(scaleX, scaleY)
+        
+        const finalWidth: number = processedImg.width * scale
+        const finalHeight: number = processedImg.height * scale
+        
+        const x: number = (pageWidth - finalWidth) / 2
+        const y: number = (pageHeight - finalHeight) / 2
+        
+        pdf.addImage(
+          processedImg.dataUrl,
+          'JPEG',
+          x,
+          y,
+          finalWidth,
+          finalHeight
+        )
       }
+      
       pdf.save('images.pdf')
     }
   }
