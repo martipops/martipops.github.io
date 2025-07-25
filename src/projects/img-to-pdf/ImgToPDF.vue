@@ -81,7 +81,6 @@ export default defineComponent({
       const draggableItems: any[] = []
       let loaded = 0
       const total = files.length
-      // Always use current length (will be 0 after clear)
       const startIdx = this.draggableItems.length
 
       Array.from(files).forEach((file, idx) => {
