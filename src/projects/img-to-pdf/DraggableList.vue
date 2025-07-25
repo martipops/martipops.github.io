@@ -4,6 +4,7 @@
       v-model="localItems"
       item-key="id"
       class="rounded"
+      animation="100"
       handle=".drag-handle"
       @update:modelValue="emitUpdate"
     >
