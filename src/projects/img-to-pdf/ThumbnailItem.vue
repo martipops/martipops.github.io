@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-between items-stretch p-2 gap-2 bg-neutral-700 rounded mb-2">
-    <div class="flex items-center gap-2">
+  <div class="flex justify-between p-2 gap-2 bg-neutral-700 rounded mb-2">
+    <div class="flex items-center gap-2 flex-1 min-w-0">
       <img
         :src="image"
         :alt="header"
@@ -13,7 +13,7 @@
         <div class="text-neutral-300 text-xs truncate">{{ description }}</div>
       </div>
     </div>
-    <div class="flex items-center justify-center self-stretch px-2 cursor-move">
+    <div class="flex items-center justify-center px-2 cursor-move">
       <IconHamburger class="drag-handle stroke-current text-neutral-200 w-12 h-full"/>
     </div>
   </div>
