@@ -13,4 +13,8 @@ const router = createRouter({
   routes,
 })
 
+router.afterEach((to) => {
+  document.title = typeof to.meta.title === 'string' ? to.meta.title : 'Martipops Projects'
+})
+
 export default router
